@@ -27,7 +27,7 @@ import Card from '../components/MainView/SuggestionCard.vue'
     </div>
   </section>
 
-  <section class="px-20 sm:px-10">
+  <section class="lg:px-20 px-10">
     <h3 class="scroll-m-20 text-2xl font-semibold tracking-tight mb-10">
       Recommandé pour vous
     </h3>
