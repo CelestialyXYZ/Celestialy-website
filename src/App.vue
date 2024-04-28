@@ -13,7 +13,7 @@ import BottomNavbar from '@/components/BottomNavigationBar.vue'
 
   <TopNavbar />
 
-  <RouterView />
+  <router-view />
 
   <BottomNavbar />
 </template>
