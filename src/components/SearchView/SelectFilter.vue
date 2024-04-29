@@ -19,7 +19,7 @@ defineProps<{ values: Array<string>, suffix?: string }>()
             <SelectValue />
         </SelectTrigger>
         <SelectContent>
-            <SelectItem v-for="value in values" :value="value" :key="value">
+            <SelectItem v-for="value in values" :value="value.replace(/ /g, '_').toLowerCase()" :key="value">
                 <SelectLabel>{{ value }}{{ suffix ? ` ${suffix}` : '' }}</SelectLabel>
             </SelectItem>
         </SelectContent>
