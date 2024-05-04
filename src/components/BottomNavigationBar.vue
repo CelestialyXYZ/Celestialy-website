@@ -1,8 +1,7 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
-    <!-- <div class="w-2/3 lg:px-20 px-10">
+  <!-- <div class="w-2/3 lg:px-20 px-10">
         <h4 class="scroll-m-20 mt-10 text-xl font-semibold tracking-tight">
             Citation de la semaine
         </h4>
@@ -12,11 +11,11 @@
             encore acquis la certitude absolue."
         </blockquote>
     </div> -->
-    <footer class="p-6 text-center text-sm text-muted-foreground">
-        Site dévelopé par <a class="underline" href="https://github.com/Zoliex" target="_blank">Zoliex</a> avec ❤ -
-        Celestialy ©
-        2024<br />
-        Status des services : <a class="underline" href="https://celestialy.openstatus.dev/"
-            target="_blank">OpenStatus</a>
-    </footer>
+  <footer class="p-6 text-center text-sm text-muted-foreground">
+    Site dévelopé par
+    <a class="underline" href="https://github.com/Zoliex" target="_blank">Zoliex</a> avec ❤ -
+    Celestialy © 2024<br />
+    Status des services :
+    <a class="underline" href="https://celestialy.openstatus.dev/" target="_blank">OpenStatus</a>
+  </footer>
 </template>

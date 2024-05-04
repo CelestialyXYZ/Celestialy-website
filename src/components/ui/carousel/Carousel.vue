@@ -4,7 +4,7 @@ import type { CarouselEmits, CarouselProps, WithClassAsProps } from './interface
 import { cn } from '@/lib/utils'
 
 const props = withDefaults(defineProps<CarouselProps & WithClassAsProps>(), {
-  orientation: 'horizontal',
+  orientation: 'horizontal'
 })
 
 const emits = defineEmits<CarouselEmits>()

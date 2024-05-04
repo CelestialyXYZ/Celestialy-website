@@ -1,7 +1,7 @@
 import type {
   EmblaCarouselType as CarouselApi,
   EmblaOptionsType as CarouselOptions,
-  EmblaPluginType as CarouselPlugin,
+  EmblaPluginType as CarouselPlugin
 } from 'embla-carousel'
 import type { HTMLAttributes, Ref } from 'vue'
 

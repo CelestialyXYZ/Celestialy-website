@@ -2,15 +2,27 @@
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 
-import SelectFilter from '@/components/SearchView/SelectFilter.vue';
-import SearchSelectFilter from '@/components/SearchView/SearchSelectFilter.vue';
-import ResultCard from '@/components/SearchView/ResultCard.vue';
+import SelectFilter from '@/components/SearchView/SelectFilter.vue'
+import SearchSelectFilter from '@/components/SearchView/SearchSelectFilter.vue'
+import ResultCard from '@/components/SearchView/ResultCard.vue'
 
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
+import { Badge } from '@/components/ui/badge'
 
-import { MapPin, Eye, MoonStar, BookOpen, Sparkles, MoveHorizontal, RotateCw, ScanSearch, Sun, Sparkle } from 'lucide-vue-next'
+import {
+    MapPin,
+    Eye,
+    MoonStar,
+    BookOpen,
+    Sparkles,
+    MoveHorizontal,
+    RotateCw,
+    ScanSearch,
+    Sun,
+    Sparkle
+} from 'lucide-vue-next'
 
 const route = useRoute()
 
@@ -24,46 +36,74 @@ const filters = ref({
         time: '10'
     },
     mag: {
-        unit: `arc_minute`,
+        unit: `arc_minute`
     },
     objectType: 'globular_cluster',
     catalog: 'messier',
-    constellation: 'Andromeda',
+    constellation: 'Andromeda'
 })
 
-const hours = ref<string[]>(['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23'])
-const objectTypes = ref<string[]>(['Dark Nebula', 'Emission Nebula', 'Galaxy', 'Globular Cluster', 'Group of Galaxies', 'Open Cluster', 'Planetary Nebula', 'Reflection Nebula', 'Supernova'])
+const hours = ref<string[]>([
+    '0',
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    '11',
+    '12',
+    '13',
+    '14',
+    '15',
+    '16',
+    '17',
+    '18',
+    '19',
+    '20',
+    '21',
+    '22',
+    '23'
+])
+const objectTypes = ref<string[]>([
+    'Dark Nebula',
+    'Emission Nebula',
+    'Galaxy',
+    'Globular Cluster',
+    'Group of Galaxies',
+    'Open Cluster',
+    'Planetary Nebula',
+    'Reflection Nebula',
+    'Supernova'
+])
 const catalogs = ref<string[]>(['Messier', 'New General Catalog', 'Index Catalog'])
-const constellations = ref<{ label: string, value: string }[]>([{ label: 'Andromeda', value: 'Andromeda' }, { label: 'Antlia', value: 'Antlia' }, { label: 'Aquarius', value: 'Aquarius' }])
+const constellations = ref<{ label: string; value: string }[]>([
+    { label: 'Andromeda', value: 'Andromeda' },
+    { label: 'Antlia', value: 'Antlia' },
+    { label: 'Aquarius', value: 'Aquarius' }
+])
 const magUnits = ref<string[]>(['degré', 'arc minute', 'arc second'])
 </script>
 
 <template>
     <main class="flex mt-10">
         <div class="w-[18.5rem] px-8">
-            <h4 class="scroll-m-20 text-xl font-semibold tracking-tight">
-                Localisation
-            </h4>
+            <h4 class="scroll-m-20 text-xl font-semibold tracking-tight">Localisation</h4>
 
             <p class="mt-4 font-semibold flex items-center space-x-2">
                 <MapPin class="w-4 h-4" />
                 <span>Paris</span>
             </p>
-            <p class="text-sm text-muted-foreground">
-                0,0000°N, 0,0000°E
-            </p>
-            <a href="#" class="font-semibold text-primary underline underline-offset-4">
-                Modifier
-            </a>
+            <p class="text-sm text-muted-foreground">0,0000°N, 0,0000°E</p>
+            <a href="#" class="font-semibold text-primary underline underline-offset-4"> Modifier </a>
 
+            <h4 class="scroll-m-20 text-xl font-semibold tracking-tight mt-8">Filtres</h4>
 
-            <h4 class="scroll-m-20 text-xl font-semibold tracking-tight mt-8">
-                Filtres
-            </h4>
-
-            <Button class="mt-4 w-full">
-                Réinitialiser les filtres
-            </Button>
+            <Button class="mt-4 w-full"> Réinitialiser les filtres </Button>
 
             <p class="mt-5 font-semibold flex items-center space-x-2">
                 <Eye class="w-4 h-4" />
@@ -197,11 +237,30 @@ const magUnits = ref<string[]>(['degré', 'arc minute', 'arc second'])
             <h3 class="scroll-m-20 text-2xl font-semibold tracking-tight">
                 Résultats de recherche pour : {{ route.query.q }}
             </h3>
-            <p class="text-sm text-muted-foreground mt-2">
-                128 résultats (0.48 secondes)
-            </p>
+            <p class="text-sm text-muted-foreground mt-2">128 résultats (0.48 secondes)</p>
 
-            <ResultCard v-for="i in 10" :key="i" />
+            <ResultCard v-for="i in 10" :key="i" title="M42 - Nébuleuse d'Orion"
+                descriptors="Lever : 18h22 - Coucher : 2h15"
+                img="https://telescopius.com/img/dsos/6ad5dfee4eda09255d9a7bd929b23df9_fullhd.webp">
+                <Badge>
+                    <Telescope :size="18" class="mr-2" />
+                    NGC 1976
+                </Badge>
+                <Badge>
+                    <Sparkles :size="18" class="mr-2" />
+                    Orion
+                </Badge>
+                <Badge>
+                    <Compass :size="18" class="mr-2" />
+                    Sud
+                </Badge>
+                <Badge>
+                    <Sun :size="18" class="mr-2" />
+                    Mag : 4
+                </Badge>
+            </ResultCard>
         </div>
+        <Map />
     </main>
 </template>
+

@@ -1,30 +1,47 @@
 <script setup lang="ts">
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from '@/components/ui/card'
+import { CardDescription, CardTitle } from '@/components/ui/card'
+
+import { Telescope, Sparkles, Compass, Sun } from 'lucide-vue-next'
+
+//define title, descriptors and img urls props
+defineProps<{
+    title: string
+    descriptors: string
+    img: string
+}>()
 </script>
 
 <template>
-    <Card class="w-[40rem] flex overflow-clip not:first:mt-0 my-3">
-        <div class="w-72 aspect-video">
-            <img src="https://picsum.photos/500/700" class="w-full h-full object-cover" alt="Object image">
+    <div class="w-[47rem] flex overflow-clip not:first:mt-0 my-3 border rounded-md">
+        <div class="w-2/3 aspect-video relative">
+            <img src="https://picsum.photos/500/700" class="w-full h-full object-cover" alt="Object image" />
+            <p class="absolute top-2 left-3 z-20 inline-flex items-center">
+                <Telescope class="w-4 h-4 drop-shadow-img shadow-black" />
+                <span class="ml-1 text-shadow shadow-black">NGC 1976</span>
+            </p>
+
+            <p class="absolute top-2 right-3 z-20 inline-flex items-center">
+                <Sparkles class="w-4 h-4 drop-shadow-img shadow-black" />
+                <span class="ml-1 text-shadow shadow-black">Orion</span>
+            </p>
+
+            <p class="absolute bottom-2 left-3 z-20 inline-flex items-center">
+                <Compass class="w-4 h-4 drop-shadow-img shadow-black" />
+                <span class="ml-1 text-shadow shadow-black">Sud</span>
+            </p>
+
+            <p class="absolute bottom-2 right-3 z-20 inline-flex items-center">
+                <Sun class="w-4 h-4 drop-shadow-img shadow-black" />
+                <span class="ml-1 text-shadow shadow-black">Mag : 4</span>
+            </p>
         </div>
-        <div>
-            <CardHeader>
-                <CardTitle>Card Title</CardTitle>
-                <CardDescription>Card Description</CardDescription>
-            </CardHeader>
-            <CardContent>
-                Card Content
-            </CardContent>
-            <CardFooter>
-                Card Footer
-            </CardFooter>
+        <div class="p-4 w-full">
+            <CardTitle>{{ title }}</CardTitle>
+            <CardDescription>{{ descriptors }}</CardDescription>
+
+            <div class="w-full h-28 mt-3 rounded-md bg-violet-950">
+                Altitude chart for the object (TODO)
+            </div>
         </div>
-    </Card>
+    </div>
 </template>
