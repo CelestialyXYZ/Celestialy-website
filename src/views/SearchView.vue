@@ -89,7 +89,7 @@ const constellations = ref<{ label: string; value: string }[]>([
 const magUnits = ref<string[]>(['degré', 'arc minute', 'arc second'])
 
 const query = ref(route.query.q)
-var results = ref({})
+var results = ref<any>([])
 
 const search = async () => {
     console.log('query', query.value)
@@ -101,7 +101,7 @@ const search = async () => {
 
 search()
 
-function getImgUrl(obj: any, res: String) {
+function getImgUrl(obj: any, res: String): string {
     var type = ""
     var name = ""
     if (obj.m.length > 0) {
@@ -114,7 +114,7 @@ function getImgUrl(obj: any, res: String) {
         type = 'ic';
         name = Array.isArray(obj.ic) ? obj.ic[0].replace("IC", "") : obj.ic.replace("IC", "");
     } else {
-        return null
+        return ''
     }
 
     return `https://cdn.statically.io/gh/CelestialyXYZ/Images/main/images/${type}/${res}/${type}_${name}.jpg`
