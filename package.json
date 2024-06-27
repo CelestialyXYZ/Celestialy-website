@@ -14,6 +14,8 @@
   },
   "dependencies": {
     "@vueuse/core": "^10.9.0",
+    "aladin-lite": "3.4.0-beta",
+    "axios": "^1.6.8",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "embla-carousel": "^8.0.2",
@@ -46,5 +48,7 @@
     "vite": "^5.2.8",
     "vite-plugin-vue-devtools": "^7.0.25",
     "vue-tsc": "^2.0.11"
-  }
+  },
+  "license": "GPL-3.0-only",
+  "author": "Zoliex"
 }

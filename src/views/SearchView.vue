@@ -87,6 +87,38 @@ const constellations = ref<{ label: string; value: string }[]>([
     { label: 'Aquarius', value: 'Aquarius' }
 ])
 const magUnits = ref<string[]>(['degré', 'arc minute', 'arc second'])
+
+const query = ref(route.query.q)
+var results = ref({})
+
+const search = async () => {
+    console.log('query', query.value)
+    results.value = await fetch(`https://celestialy-api.celestialy.workers.dev/dso/${query.value}`, {
+        method: 'GET',
+    })
+    console.log('results', results.value)
+}
+
+search()
+
+function getImgUrl(obj: any, res: String) {
+    var type = ""
+    var name = ""
+    if (obj.m.length > 0) {
+        type = 'messier';
+        name = Array.isArray(obj.m) ? obj.m[0].replace("M", "") : obj.m.replace("M", "");
+    } else if (obj.ngc.length > 0) {
+        type = 'ngc';
+        name = Array.isArray(obj.ngc) ? obj.ngc[0].replace("NGC", "") : obj.ngc.replace("NGC", "");
+    } else if (obj.ic.length > 0) {
+        type = 'ic';
+        name = Array.isArray(obj.ic) ? obj.ic[0].replace("IC", "") : obj.ic.replace("IC", "");
+    } else {
+        return null
+    }
+
+    return `https://cdn.statically.io/gh/CelestialyXYZ/Images/main/images/${type}/${res}/${type}_${name}.jpg`
+}
 </script>
 
 <template>
@@ -239,16 +271,15 @@ const magUnits = ref<string[]>(['degré', 'arc minute', 'arc second'])
             </h3>
             <p class="text-sm text-muted-foreground mt-2">128 résultats (0.48 secondes)</p>
 
-            <ResultCard v-for="i in 10" :key="i" title="M42 - Nébuleuse d'Orion"
-                descriptors="Lever : 18h22 - Coucher : 2h15"
-                img="https://telescopius.com/img/dsos/6ad5dfee4eda09255d9a7bd929b23df9_fullhd.webp">
+            <ResultCard v-for="(result, index) in results.data" :key="index" :title=result.names.fr
+                descriptors="Lever : 18h22 - Coucher : 2h15" :img="getImgUrl(result, '500x300')">
                 <Badge>
                     <Telescope :size="18" class="mr-2" />
-                    NGC 1976
+                    {{ result.ngc }}
                 </Badge>
                 <Badge>
                     <Sparkles :size="18" class="mr-2" />
-                    Orion
+                    {{ result.const }}
                 </Badge>
                 <Badge>
                     <Compass :size="18" class="mr-2" />
@@ -256,7 +287,7 @@ const magUnits = ref<string[]>(['degré', 'arc minute', 'arc second'])
                 </Badge>
                 <Badge>
                     <Sun :size="18" class="mr-2" />
-                    Mag : 4
+                    Mag : {{ result["v-mag"] }}
                 </Badge>
             </ResultCard>
         </div>

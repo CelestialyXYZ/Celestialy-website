@@ -14,7 +14,7 @@ defineProps<{
 <template>
     <div class="w-[47rem] flex overflow-clip not:first:mt-0 my-3 border rounded-md">
         <div class="w-2/3 aspect-video relative">
-            <img src="https://picsum.photos/500/700" class="w-full h-full object-cover" alt="Object image" />
+            <img :src="img" class="w-full h-full object-cover" alt="Object image" />
             <p class="absolute top-2 left-3 z-20 inline-flex items-center">
                 <Telescope class="w-4 h-4 drop-shadow-img shadow-black" />
                 <span class="ml-1 text-shadow shadow-black">NGC 1976</span>
